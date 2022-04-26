@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.calc-main-container {
+  border: 1px solid red;
+  width: fit-content;
+}
+
+.calc-screen {
+  border: 1px solid greenyellow;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 60px;
+}
+
+.row-container {
+  display: flex;
+}
+
+.darker-button, .lighter-button {
+  border: 1px solid orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+}

@@ -1,4 +1,4 @@
 # calculator
 In-Browser calculator app
 
-The calculator app ypur operating system has by default, now on a website :)
+The calculator app your operating system has by default, now on a website :)

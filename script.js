@@ -1,4 +1,19 @@
-const numbers = document.querySelectorAll(".lighter-button");
+const numbers = document.querySelectorAll('.numbers');
+const decimal = document.getElementById('decimal');
+const lowerScreen = document.getElementById('result');
+const clearEntry = document.getElementById('CE');
+
+let displayValue = [];
+
+function showInScreen() {
+  if(lowerScreen.textContent.length < 10) {
+    lowerScreen.textContent = displayValue.join('');
+  }
+}
+
+function clearCurrentEntry() {
+  lowerScreen.textContent = '0';
+}
 
 function add(num1, num2) {
   return num1 + num2;
@@ -32,6 +47,20 @@ function operate(operator, num1, num2) {
 
 numbers.forEach(number => {
   number.addEventListener('click', () => {
-    console.log(number.getAttribute('data-value'));
+   displayValue.push(number.getAttribute('data-value'));
+   showInScreen();
+   console.log(displayValue);
   })
+})
+
+decimal.addEventListener('click', () => {
+  if (lowerScreen.textContent === '0') {
+    displayValue.push('0' + decimal.getAttribute('data-value'));
+    showInScreen();
+  }
+})
+
+clearEntry.addEventListener('click', () => {
+  displayValue = [];
+  clearCurrentEntry();
 })

@@ -15,7 +15,7 @@
   width: fit-content;
 }
 
-.calc-screen {
+.current-number {
   border: 1px solid greenyellow;
   display: flex;
   justify-content: flex-end;

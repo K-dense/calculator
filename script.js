@@ -3,7 +3,12 @@ const decimal = document.getElementById('decimal');
 const lowerScreen = document.getElementById('result');
 const clearEntry = document.getElementById('CE');
 
+const addBtn = document.getElementById('add');
+
 let displayValue = [];
+let valueHolder = 0;
+let decimalSwitch = true; // To stop more than one dot (decimal)
+let operator = null;
 
 function showInScreen() {
   if(lowerScreen.textContent.length < 10) {
@@ -12,6 +17,7 @@ function showInScreen() {
 }
 
 function clearCurrentEntry() {
+  displayValue = [];
   lowerScreen.textContent = '0';
 }
 
@@ -32,11 +38,11 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
-  if (operator === "+") {
+  if (operator === '+') {
     return add(num1, num2);
-  } else if (operator === "-") {
+  } else if (operator === '-') {
     return subtract(num1, num2);
-  } else if (operator === "*") {
+  } else if (operator === '*') {
     return multiply(num1, num2);
   } else {
     return divide(num1, num2);
@@ -48,19 +54,38 @@ function operate(operator, num1, num2) {
 numbers.forEach(number => {
   number.addEventListener('click', () => {
    displayValue.push(number.getAttribute('data-value'));
+   console.log(displayValue)
    showInScreen();
-   console.log(displayValue);
   })
 })
 
 decimal.addEventListener('click', () => {
   if (lowerScreen.textContent === '0') {
     displayValue.push('0' + decimal.getAttribute('data-value'));
+    decimalSwitch = false;
+    console.log(displayValue);
+    showInScreen();
+  } else if (decimalSwitch === true) {
+    displayValue.push(decimal.getAttribute('data-value'));
+    decimalSwitch = false;
     showInScreen();
   }
 })
 
 clearEntry.addEventListener('click', () => {
   displayValue = [];
+  decimalSwitch = true;
   clearCurrentEntry();
+})
+
+addBtn.addEventListener('click', () => {
+  if (operator === null) {
+    operator = '+';
+    valueHolder = Number(displayValue.join(''));
+    clearCurrentEntry();
+  } else {
+    console.log(operate(operator, valueHolder, Number(displayValue.join(''))));
+    operator = null;
+    clearCurrentEntry();
+  }
 })

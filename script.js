@@ -16,9 +16,14 @@ function showInScreen() {
   }
 }
 
-function clearCurrentEntry() {
-  displayValue = [];
-  lowerScreen.textContent = '0';
+function clearCurrentEntry(displayOnTopScreen) {
+  if (displayOnTopScreen) {
+    displayValue = [];
+    lowerScreen.textContent = valueHolder;
+  } else {
+    displayValue = [];
+    lowerScreen.textContent = '0';
+  }
 }
 
 function add(num1, num2) {
@@ -54,7 +59,6 @@ function operate(operator, num1, num2) {
 numbers.forEach(number => {
   number.addEventListener('click', () => {
    displayValue.push(number.getAttribute('data-value'));
-   console.log(displayValue)
    showInScreen();
   })
 })
@@ -83,9 +87,9 @@ addBtn.addEventListener('click', () => {
     operator = '+';
     valueHolder = Number(displayValue.join(''));
     clearCurrentEntry();
-  } else {
-    console.log(operate(operator, valueHolder, Number(displayValue.join(''))));
-    operator = null;
-    clearCurrentEntry();
+  } else if (operator === '+') {
+    operator = '+';
+    console.log(valueHolder += Number(displayValue.join('')));
+    clearCurrentEntry(true);
   }
 })

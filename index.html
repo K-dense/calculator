@@ -9,50 +9,48 @@
   <title>Calculator</title>
 </head>
 <body>
-  <div class="centering-container">
-    <div class="calc-main-container">
+  <div class="calc-main-container">
 
-      <div class="output">
-        <div class="previous-number" id="operation"></div>
-        <div class="current-number" id="result">0</div>
-      </div>
+    <div class="output">
+      <div class="previous-number" id="prev-num"></div>
+      <div class="current-number" id="curr-num"></div>
+     </div>
 
-      <div class="row-container">
-        <div class="darker-button" id="CE">CE</div>
-        <div class="darker-button" id="C">C</div>
-        <div class="darker-button" id="backspace"><-</div>
-        <div class="darker-button" id="divide">÷</div>
-      </div>
-
-      <div class="row-container">
-        <div class="lighter-button numbers" data-value='7'>7</div>
-        <div class="lighter-button numbers" data-value='8'>8</div>
-        <div class="lighter-button numbers" data-value='9'>9</div>
-        <div class="darker-button" id="multiply">×</div>
-      </div>
-
-      <div class="row-container">
-        <div class="lighter-button numbers" data-value='4'>4</div>
-        <div class="lighter-button numbers" data-value='5'>5</div>
-        <div class="lighter-button numbers" data-value='6'>6</div>
-        <div class="darker-button" id="subtract">-</div>
-      </div>
-
-      <div class="row-container">
-        <div class="lighter-button numbers" data-value='1'>1</div>
-        <div class="lighter-button numbers" data-value='2'>2</div>
-        <div class="lighter-button numbers" data-value='3'>3</div>
-        <div class="darker-button" id="add">+</div>
-      </div>
-
-      <div class="row-container">
-        <div class="lighter-button"></div>
-        <div class="lighter-button numbers" data-value='0'>0</div>
-        <div class="lighter-button" id="decimal" data-value='.'>.</div>
-        <div class="darker-button" id="equal">=</div>
-      </div>
-
+    <div class="row-container">
+      <div class="darker-button" id="CE">CE</div>
+      <div class="darker-button" id="C">C</div>
+      <div class="darker-button" id="backspace"><-</div>
+      <div data-operation class="darker-button">÷</div>
     </div>
+
+    <div class="row-container">
+      <div data-number class="lighter-button">7</div>
+      <div data-number class="lighter-button">8</div>
+      <div data-number class="lighter-button">9</div>
+      <div data-operation class="darker-button">×</div>
+    </div>
+
+    <div class="row-container">
+      <div data-number class="lighter-button">4</div>
+      <div data-number class="lighter-button">5</div>
+      <div data-number class="lighter-button">6</div>
+      <div data-operation class="darker-button">-</div>
+    </div>
+
+    <div class="row-container">
+      <div data-number class="lighter-button">1</div>
+      <div data-number class="lighter-button">2</div>
+      <div data-number class="lighter-button">3</div>
+      <div data-operation class="darker-button">+</div>
+    </div>
+
+    <div class="row-container">
+      <div class="lighter-button"></div>
+      <div data-number class="lighter-button">0</div>
+      <div data-number class="lighter-button" id="decimal">.</div>
+      <div class="darker-button" id="equals">=</div>
+    </div>
+
   </div>
 </body>
 </html>

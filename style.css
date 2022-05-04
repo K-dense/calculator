@@ -1,26 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Oswald:wght@300;400&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-.centering-container {
+body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background: linear-gradient(89deg, #FFFFFF 0%, #B6D5D5 50%, #82B3EE 100%);
 }
 
 .calc-main-container {
-  border: 1px solid red;
-  width: fit-content;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(1, 362px);
+  grid-template-rows: minmax(150px, auto);
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  grid-column: 1 / -1;
+  border: 1px solid #ccc;
+  border-radius: 16px 16px 0 0;
+  background-color: rgba(0, 0, 0, .75);
+  min-height: 152px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.previous-number {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2rem;
+  padding: 0 10px 0 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  color: #707B7B;
 }
 
 .current-number {
-  border: 1px solid greenyellow;
   display: flex;
   justify-content: flex-end;
-  font-size: 60px;
-  padding: 30px 0;
+  font-size: 3rem;
+  padding: 0 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, .75);
 }
 
 .row-container {
@@ -28,11 +61,31 @@
 }
 
 .darker-button, .lighter-button {
-  border: 1px solid orange;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 90px;
   height: 90px;
   font-size: 30px;
+  border: 5px solid white;
+  cursor: pointer;
+  font-family: 'Balsamiq Sans', cursive;
+}
+
+.darker-button {
+  background-color: #D5DFDF;
+}
+
+.lighter-button {
+  background-color: aliceblue;
+}
+
+.darker-button:hover {
+  border: 1px solid white;
+  background-color: #E9F0F0;
+}
+
+.lighter-button:hover {
+  border: 1px solid white;
+  background-color: #E9F0F0
 }

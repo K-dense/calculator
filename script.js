@@ -1,95 +1,113 @@
-const numbers = document.querySelectorAll('.numbers');
-const decimal = document.getElementById('decimal');
-const lowerScreen = document.getElementById('result');
+const numberBtns = document.querySelectorAll('[data-number]');
+const operationBtns = document.querySelectorAll('[data-operation]');
+const upperScreen = document.getElementById('prev-num');
+const lowerScreen = document.getElementById('curr-num');
 const clearEntry = document.getElementById('CE');
+const clear = document.getElementById('C');
+const backspace = document.getElementById('backspace');
+const equals = document.getElementById('equals');
 
-const addBtn = document.getElementById('add');
+let currentNum = '';
+let previousNum = '';
+let oper;
 
-let displayValue = [];
-let valueHolder = 0;
-let decimalSwitch = true; // To stop more than one dot (decimal)
-let operator = null;
+function clearEntryHandler() {
+  currentNum = '';
+}
 
-function showInScreen() {
-  if(lowerScreen.textContent.length < 10) {
-    lowerScreen.textContent = displayValue.join('');
+function clearHandler() {
+  currentNum = '';
+  previousNum = '';
+  oper = undefined;
+}
+
+function backspaceHandler() {
+  currentNum = currentNum.slice(0, -1);
+}
+
+function appendNumber(number) {
+  if (number === '.' && currentNum.includes('.')) return
+  return currentNum = currentNum + number;
+}
+
+function chooseOperation(operation) {
+  if (currentNum === '') return
+  if (previousNum != '') {
+    compute();
+  }
+  oper = operation;
+  previousNum = currentNum;
+  currentNum = '';
+}
+
+function compute() {
+  let computation;
+  const prev = parseFloat(previousNum);
+  const current = parseFloat(currentNum);
+  if (isNaN(prev) || isNaN(current)) return
+  switch (oper) {
+    case '+':
+      computation = prev + current
+      break
+    case '-':
+      computation = prev - current
+      break
+    case '×':
+      computation = prev * current
+      break
+    case '÷':
+      if (current === 0) {
+        computation = 'No'
+      } else {
+        computation = prev / current
+      }
+      break
+    default:
+      return
+  }
+  currentNum = computation;
+  oper = undefined;
+  previousNum = '';
+}
+
+function updateDisplay() {
+  lowerScreen.innerText = currentNum;
+  upperScreen.innerText = previousNum;
+  if (oper != undefined) {
+    upperScreen.innerText = `${previousNum} ${oper}`;
   }
 }
 
-function clearCurrentEntry(displayOnTopScreen) {
-  if (displayOnTopScreen) {
-    displayValue = [];
-    lowerScreen.textContent = valueHolder;
-  } else {
-    displayValue = [];
-    lowerScreen.textContent = '0';
-  }
-}
-
-function add(num1, num2) {
-  return num1 + num2;
-}
-
-function subtract(num1, num2) {
-  return num1 - num2;
-}
-
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-
-function divide(num1, num2) {
-  return num1 / num2;
-}
-
-function operate(operator, num1, num2) {
-  if (operator === '+') {
-    return add(num1, num2);
-  } else if (operator === '-') {
-    return subtract(num1, num2);
-  } else if (operator === '*') {
-    return multiply(num1, num2);
-  } else {
-    return divide(num1, num2);
-  }
-}
-
-//Event listeners
-
-numbers.forEach(number => {
-  number.addEventListener('click', () => {
-   displayValue.push(number.getAttribute('data-value'));
-   showInScreen();
+numberBtns.forEach(button => {
+  button.addEventListener('click', () => {
+    appendNumber(button.innerText);
+    updateDisplay();
   })
 })
 
-decimal.addEventListener('click', () => {
-  if (lowerScreen.textContent === '0') {
-    displayValue.push('0' + decimal.getAttribute('data-value'));
-    decimalSwitch = false;
-    console.log(displayValue);
-    showInScreen();
-  } else if (decimalSwitch === true) {
-    displayValue.push(decimal.getAttribute('data-value'));
-    decimalSwitch = false;
-    showInScreen();
-  }
+operationBtns.forEach(button => {
+  button.addEventListener('click', () => {
+    chooseOperation(button.innerText);
+    updateDisplay();
+  })
 })
 
 clearEntry.addEventListener('click', () => {
-  displayValue = [];
-  decimalSwitch = true;
-  clearCurrentEntry();
-})
+  clearEntryHandler();
+  updateDisplay();
+});
 
-addBtn.addEventListener('click', () => {
-  if (operator === null) {
-    operator = '+';
-    valueHolder = Number(displayValue.join(''));
-    clearCurrentEntry();
-  } else if (operator === '+') {
-    operator = '+';
-    console.log(valueHolder += Number(displayValue.join('')));
-    clearCurrentEntry(true);
-  }
-})
+clear.addEventListener('click', () => {
+  clearHandler();
+  updateDisplay();
+});
+
+backspace.addEventListener('click', () => {
+  backspaceHandler();
+  updateDisplay();
+});
+
+equals.addEventListener('click', () => {
+  compute();
+  updateDisplay();
+});

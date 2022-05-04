@@ -14,7 +14,6 @@ body {
 }
 
 header {
-  display: block;
   margin-top: 10vh;
   margin-bottom: 1vh;
 }
@@ -105,4 +104,15 @@ svg {
 .lighter-button:hover {
   border: 1px solid white;
   background-color: #E9F0F0
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  .calc-main-container {
+    min-height: 90vh;
+  }
 }

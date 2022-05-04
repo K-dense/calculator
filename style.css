@@ -13,11 +13,28 @@ body {
   background: linear-gradient(89deg, #FFFFFF 0%, #B6D5D5 50%, #82B3EE 100%);
 }
 
+header {
+  display: block;
+  margin-top: 10vh;
+  margin-bottom: 1vh;
+}
+
+header > ul {
+  display: flex;
+  list-style: none;
+  gap: 60px;
+}
+
+svg {
+  width: 50px;
+  height: 50px;
+}
+
 .calc-main-container {
   display: grid;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
+  min-height: 30vh;
   grid-template-columns: repeat(1, 362px);
   grid-template-rows: minmax(150px, auto);
 }
